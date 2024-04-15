@@ -603,7 +603,7 @@ spec:
       "timepicker": {},
       "timezone": "",
       "title": "Nodes stats",
-      "uid": "b6pffKY4k",
+      "uid": null,
       "version": 8,
       "weekStart": ""
     }
