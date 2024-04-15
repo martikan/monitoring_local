@@ -1,0 +1,28 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: prometheus
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+      version: 24.1.0
+  interval: 1m0s
+  values:
+    alertmanager:
+      enabled: false
+    configmapReload:
+      prometheus:
+        enabled: false
+    prometheus-pushgateway:
+      enabled: false
+      securityContext:
+        fsGroup: 0
+        runAsGroup: 0
+        runAsNonRoot: false
+        runAsUser: 0

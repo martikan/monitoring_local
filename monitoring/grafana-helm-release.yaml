@@ -1,0 +1,50 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: grafana
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+      version: 6.59.1
+  interval: 1m0s
+  values:
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+          - access: proxy
+            editable: false
+            isDefault: true
+            jsonData:
+              timeInterval: 15s
+              tlsSkipVerify: true
+            name: Prometheus
+            type: prometheus
+            url: http://prometheus-server.monitoring
+            version: 2
+    grafana.ini:
+      auth:
+        disable_login_form: false
+        disable_signout_menu: true
+      auth.anonymous:
+        enabled: true
+      log.frontend:
+        enabled: true
+    plugins:
+      - vonage-status-panel
+    sidecar:
+      dashboards:
+        enabled: true
+        folderAnnotation: grafana_folder
+        label: grafana_dashboard
+        provider:
+          foldersFromFilesStructure: true
+        searchNamespace: monitoring
+        skipReload: true
+
