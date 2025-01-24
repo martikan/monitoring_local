@@ -21,6 +21,19 @@ spec:
         enabled: false
     prometheus-pushgateway:
       enabled: false
+    server:
+      global:
+        scrape_interval: 10s
+        scrape_timeout: 10s
+      # retention: 10d
+      # extraFlags:
+      #   - storage.tsdb.retention.size=28GB
+      # persistentVolume:
+      #   accessModes:
+      #     - ReadWriteMany
+      #   enabled: true
+      #   size: 28Gi
+      #   volumeName: pv-prometheus
       securityContext:
         fsGroup: 0
         runAsGroup: 0
