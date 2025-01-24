@@ -7,4 +7,4 @@ resources:
   - prometheus-helm-release.yaml
   - grafana-helm-release.yaml
   - sa.yaml
-  - sample_dashboard/grafana-dashboardNodes.yaml
+  # - sample_dashboard/grafana-dashboardNodes.yaml
